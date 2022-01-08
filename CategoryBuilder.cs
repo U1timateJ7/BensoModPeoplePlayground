@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Ninjago
+namespace BensoMod
 {
     public class CategoryBuilder
     {
