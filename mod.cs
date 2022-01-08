@@ -5,15 +5,15 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using System.IO;
 
-namespace Ninjago
+namespace BensoMod
 {
     public class Mod : MonoBehaviour
     {
-        public static string ModTag = " [NG]";
+        public static string ModTag = " [BM]";
 
         public static void Main()
         {
-            CategoryBuilder.Create("Ninjago", "Everything Ninjago", ModAPI.LoadSprite("sprites/ninjago.png"));
+            CategoryBuilder.Create("BensoMod", "p", ModAPI.LoadSprite("sprites/bensomod.png"));
 
             #region People
 
@@ -21,54 +21,14 @@ namespace Ninjago
             new Modification()
             {
                 OriginalItem = ModAPI.FindSpawnable("Human"),
-                NameOverride = "Kai" + ModTag,
-                DescriptionOverride = "Ninja of fire.",
-                CategoryOverride = ModAPI.FindCategory("Ninjago"),
-                NameToOrderByOverride = "1",
-                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/kaiThumbnail.png"), 
+                NameOverride = "Reverse Flash" + ModTag,
+                DescriptionOverride = "The ACTUAL fastest man alive.",
+                CategoryOverride = ModAPI.FindCategory("BensoMod"),
+                NameToOrderByOverride = "0",
+                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/reverseFlashThumbnail.png"), 
                 AfterSpawn = (Instance) =>
                 {
-                    var skin = ModAPI.LoadTexture("sprites/Kai/kai.png");
-                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin);
-
-                    var head = Instance.transform.GetChild(5);
-                    var childObject = new GameObject("Hair");
-                    childObject.transform.SetParent(head);
-                    childObject.transform.localPosition = new Vector3(0, -0.0275f);
-                    childObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                    childObject.transform.localScale = new Vector3(1f, 1f);
-                    var childSprite = childObject.AddComponent<SpriteRenderer>();
-                    childSprite.sprite = ModAPI.LoadSprite("sprites/empty.png");
-                    childSprite.sortingLayerName = "Top";
-
-                    var person = Instance.GetComponent<PersonBehaviour>();
-                    foreach (var body in person.Limbs)
-                    {
-                        body.DiscomfortingHeatTemperature = float.MaxValue;
-                        body.PhysicalBehaviour.BurningProgressionMultiplier = 0;
-                        body.gameObject.AddComponent<CycleSkinTextures>();
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Kai/kai.png"), true, "Original", ModAPI.LoadSprite("sprites/empty.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Kai/kaiMaskless.png"), true, "Original (No Mask)", ModAPI.LoadSprite("sprites/Kai/kaiHair.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Kai/kaiZX.png"), true, "ZX", ModAPI.LoadSprite("sprites/empty.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Kai/kaiZXMaskless.png"), true, "ZX (No Mask)", ModAPI.LoadSprite("sprites/Kai/kaiHair.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Kai/kaiElemental.png"), true, "Elemental", ModAPI.LoadSprite("sprites/empty.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Kai/kaiElementalMaskless.png"), true, "Elemental (No Mask)", ModAPI.LoadSprite("sprites/Kai/kaiHair.png"));
-                    }
-                }
-            });
-
-            ModAPI.Register(
-            new Modification()
-            {
-                OriginalItem = ModAPI.FindSpawnable("Human"),
-                NameOverride = "Jay" + ModTag,
-                DescriptionOverride = "Ninja of lightning.",
-                CategoryOverride = ModAPI.FindCategory("Ninjago"),
-                NameToOrderByOverride = "2",
-                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/jayThumbnail.png"), 
-                AfterSpawn = (Instance) =>
-                {
-                    var skin = ModAPI.LoadTexture("sprites/Jay/jay.png");
+                    var skin = ModAPI.LoadTexture("sprites/People/reverseFlash.png");
                     Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin);
 
                     var head = Instance.transform.GetChild(5);
@@ -85,324 +45,9 @@ namespace Ninjago
                     foreach (var body in person.Limbs)
                     {
                         body.gameObject.AddComponent<CycleSkinTextures>();
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Jay/jay.png"), true, "Original", ModAPI.LoadSprite("sprites/empty.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Jay/jayMaskless.png"), true, "Original (No Mask)", ModAPI.LoadSprite("sprites/Jay/jayHair.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Jay/jayZX.png"), ModAPI.LoadTexture("sprites/Jay/jayZXArm.png"), new string[] { "UpperArmFront", "LowerArmFront" }, true, "ZX", ModAPI.LoadSprite("sprites/empty.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Jay/jayZXMaskless.png"), ModAPI.LoadTexture("sprites/Jay/jayZXArm.png"), new string[] { "UpperArmFront", "LowerArmFront" }, true, "ZX (No Mask)", ModAPI.LoadSprite("sprites/Jay/jayHair.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Jay/jayElemental.png"), true, "Elemental", ModAPI.LoadSprite("sprites/empty.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Jay/jayElementalMaskless.png"), true, "Elemental (No Mask)", ModAPI.LoadSprite("sprites/Jay/jayHair.png"));
+                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/People/reverseFlash.png"), true, "Mask On", ModAPI.LoadSprite("sprites/empty.png"));
+                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/People/reverseFlashMaskless.png"), true, "Mask Off", ModAPI.LoadSprite("sprites/People/reverseFlashHair.png"));
                     }
-                }
-            });
-
-            ModAPI.Register(
-            new Modification()
-            {
-                OriginalItem = ModAPI.FindSpawnable("Human"),
-                NameOverride = "Cole" + ModTag,
-                DescriptionOverride = "Ninja of earth.",
-                CategoryOverride = ModAPI.FindCategory("Ninjago"),
-                NameToOrderByOverride = "3",
-                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/coleThumbnail.png"), 
-                AfterSpawn = (Instance) =>
-                {
-                    var skin = ModAPI.LoadTexture("sprites/Cole/cole.png");
-                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin);
-
-                    var head = Instance.transform.GetChild(5);
-                    var childObject = new GameObject("Hair");
-                    childObject.transform.SetParent(head);
-                    childObject.transform.localPosition = new Vector3(0, -0.0275f);
-                    childObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                    childObject.transform.localScale = new Vector3(1f, 1f);
-                    var childSprite = childObject.AddComponent<SpriteRenderer>();
-                    childSprite.sprite = ModAPI.LoadSprite("sprites/empty.png");
-                    childSprite.sortingLayerName = "Top";
-
-                    var person = Instance.GetComponent<PersonBehaviour>();
-                    foreach (var body in person.Limbs)
-                    {
-                        body.gameObject.AddComponent<CycleSkinTextures>();
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Cole/cole.png"), true, "Original", ModAPI.LoadSprite("sprites/empty.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Cole/coleMaskless.png"), true, "Original (No Mask)", ModAPI.LoadSprite("sprites/Cole/coleHair.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Cole/coleZX.png"), true, "ZX", ModAPI.LoadSprite("sprites/empty.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Cole/coleZXMaskless.png"), true, "ZX (No Mask)", ModAPI.LoadSprite("sprites/Cole/coleHair.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Cole/coleElemental.png"), true, "Elemental", ModAPI.LoadSprite("sprites/empty.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Cole/coleElementalMaskless.png"), true, "Elemental (No Mask)", ModAPI.LoadSprite("sprites/Cole/coleHair.png"));
-                    }
-                }
-            });
-
-            ModAPI.Register(
-            new Modification()
-            {
-                OriginalItem = ModAPI.FindSpawnable("Android"),
-                NameOverride = "Zane" + ModTag,
-                DescriptionOverride = "Ninja of ice.",
-                CategoryOverride = ModAPI.FindCategory("Ninjago"),
-                NameToOrderByOverride = "4",
-                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/zaneThumbnail.png"), 
-                AfterSpawn = (Instance) =>
-                {
-                    var skin = ModAPI.LoadTexture("sprites/Zane/zane.png");
-
-                    var head = Instance.transform.GetChild(0);
-                    var childObject = new GameObject("Hair");
-                    childObject.transform.SetParent(head);
-                    childObject.transform.localPosition = new Vector3(0, -0.0275f);
-                    childObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                    childObject.transform.localScale = new Vector3(1f, 1f);
-                    var childSprite = childObject.AddComponent<SpriteRenderer>();
-                    childSprite.sprite = ModAPI.LoadSprite("sprites/empty.png");
-                    childSprite.sortingLayerName = "Top";
-
-                    var person = Instance.GetComponent<PersonBehaviour>();
-                    person.RandomisedSize = true;
-                    foreach (var body in person.Limbs)
-                    {
-                        body.gameObject.AddComponent<CycleSkinTextures>();
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Zane/zane.png"), true, "Original", ModAPI.LoadSprite("sprites/empty.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Zane/zaneMaskless.png"), true, "Original (No Mask)", ModAPI.LoadSprite("sprites/Zane/zaneHair.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Zane/zaneZX.png"), true, "ZX", ModAPI.LoadSprite("sprites/empty.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Zane/zaneZXMaskless.png"), true, "ZX (No Mask)", ModAPI.LoadSprite("sprites/Zane/zaneHair.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Zane/zaneElemental.png"), true, "Elemental", ModAPI.LoadSprite("sprites/empty.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Zane/zaneElementalMaskless.png"), true, "Elemental (No Mask)", ModAPI.LoadSprite("sprites/Zane/zaneHair.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Zane/zanePink.png"), true, "Pink", ModAPI.LoadSprite("sprites/empty.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Zane/zanePinkMaskless.png"), true, "Pink (No Mask)", ModAPI.LoadSprite("sprites/Zane/zaneHair.png"));
-                    }
-
-                    Instance.transform.localScale = Vector2.one * Random.Range(1.59f, 2f) / 2f / 0.82397f;
-
-                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin);
-                }
-            });
-
-            ModAPI.Register(
-            new Modification()
-            {
-                OriginalItem = ModAPI.FindSpawnable("Human"),
-                NameOverride = "Lloyd" + ModTag,
-                DescriptionOverride = "The green ninja.",
-                CategoryOverride = ModAPI.FindCategory("Ninjago"),
-                NameToOrderByOverride = "5",
-                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/lloydThumbnail.png"), 
-                AfterSpawn = (Instance) =>
-                {
-                    var skin = ModAPI.LoadTexture("sprites/Lloyd/lloydZX.png");
-                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin);
-
-                    var head = Instance.transform.GetChild(5);
-                    var childObject = new GameObject("Hair");
-                    childObject.transform.SetParent(head);
-                    childObject.transform.localPosition = new Vector3(0, -0.0275f);
-                    childObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                    childObject.transform.localScale = new Vector3(1f, 1f);
-                    var childSprite = childObject.AddComponent<SpriteRenderer>();
-                    childSprite.sprite = ModAPI.LoadSprite("sprites/empty.png");
-                    childSprite.sortingLayerName = "Top";
-
-                    var person = Instance.GetComponent<PersonBehaviour>();
-                    foreach (var body in person.Limbs)
-                    {
-                        body.DiscomfortingHeatTemperature = float.MaxValue;
-                        body.PhysicalBehaviour.BurningProgressionMultiplier = 0;
-                        body.gameObject.AddComponent<CycleSkinTextures>();
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Lloyd/lloydZX.png"), true, "ZX", ModAPI.LoadSprite("sprites/empty.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Lloyd/lloydZXMaskless.png"), true, "ZX (Mask Off)", ModAPI.LoadSprite("sprites/Lloyd/lloydHair.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Lloyd/lloydElemental.png"), true, "Elemental", ModAPI.LoadSprite("sprites/empty.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Lloyd/lloydElementalMaskless.png"), true, "Elemental (Mask Off)", ModAPI.LoadSprite("sprites/Lloyd/lloydHair.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Lloyd/lloydGolden.png"), true, "Ultimate Spinjitzu Master", ModAPI.LoadSprite("sprites/empty.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Lloyd/lloydGoldenMaskless.png"), true, "Ultimate Spinjitzu Master (Mask Off)", ModAPI.LoadSprite("sprites/Lloyd/lloydHair.png"));
-                    }
-                }
-            });
-
-            ModAPI.Register(
-            new Modification()
-            {
-                OriginalItem = ModAPI.FindSpawnable("Human"),
-                NameOverride = "Nya" + ModTag,
-                DescriptionOverride = "Kai's sister.",
-                CategoryOverride = ModAPI.FindCategory("Ninjago"),
-                NameToOrderByOverride = "6",
-                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/nyaThumbnail.png"),
-                AfterSpawn = (Instance) =>
-                {
-                    var skin = ModAPI.LoadTexture("sprites/Nya/nya.png");
-                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin);
-
-                    var head = Instance.transform.GetChild(5);
-                    var childObject = new GameObject("Hair");
-                    childObject.transform.SetParent(head);
-                    childObject.transform.localPosition = new Vector3(0, -0.0275f);
-                    childObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                    childObject.transform.localScale = new Vector3(1f, 1f);
-                    var childSprite = childObject.AddComponent<SpriteRenderer>();
-                    childSprite.sprite = ModAPI.LoadSprite("sprites/Nya/nyaHair.png");
-                    childSprite.sortingLayerName = "Top";
-
-                    var person = Instance.GetComponent<PersonBehaviour>();
-                    foreach (var body in person.Limbs)
-                    {
-                        body.gameObject.AddComponent<CycleSkinTextures>();
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Nya/nya.png"), true, "Nya", ModAPI.LoadSprite("sprites/Nya/nyaHair.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Nya/samuraiX.png"), true, "Samurai X", ModAPI.LoadSprite("sprites/Nya/samuraiXHair.png"));
-                    }
-                }
-            });
-
-            ModAPI.Register(
-            new Modification()
-            {
-                OriginalItem = ModAPI.FindSpawnable("Human"),
-                NameOverride = "Sensei Wu" + ModTag,
-                DescriptionOverride = "Master of creation.",
-                CategoryOverride = ModAPI.FindCategory("Ninjago"),
-                NameToOrderByOverride = "7",
-                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/wuThumbnail.png"),
-                AfterSpawn = (Instance) =>
-                {
-                    var skin = ModAPI.LoadTexture("sprites/Wu/wu.png");
-                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin);
-
-                    var head = Instance.transform.GetChild(5);
-                    var childObject = new GameObject("Hair");
-                    childObject.transform.SetParent(head);
-                    childObject.transform.localPosition = new Vector3(0, -0.0275f);
-                    childObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                    childObject.transform.localScale = new Vector3(1f, 1f);
-                    var childSprite = childObject.AddComponent<SpriteRenderer>();
-                    childSprite.sprite = ModAPI.LoadSprite("sprites/Wu/wuHair.png");
-                    childSprite.sortingLayerName = "Top";
-
-                    var person = Instance.GetComponent<PersonBehaviour>();
-                    foreach (var body in person.Limbs)
-                    {
-                        body.gameObject.AddComponent<CycleSkinTextures>();
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Wu/wu.png"), true, "White gi", ModAPI.LoadSprite("sprites/Wu/wuHair.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Wu/wuBlack.png"), true, "Black gi", ModAPI.LoadSprite("sprites/Wu/wuHair.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Wu/wuBlack.png"), true, "Young Wu", ModAPI.LoadSprite("sprites/Wu/youngWuHair.png"));
-                    }
-                }
-            });
-
-            ModAPI.Register(
-            new Modification()
-            {
-                OriginalItem = ModAPI.FindSpawnable("Human"),
-                NameOverride = "Lord Garmadon" + ModTag,
-                DescriptionOverride = "Master of destruction.",
-                CategoryOverride = ModAPI.FindCategory("Ninjago"),
-                NameToOrderByOverride = "8",
-                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/garmadonThumbnail.png"),
-                AfterSpawn = (Instance) =>
-                {
-                    var skin = ModAPI.LoadTexture("sprites/Garmadon/garmadon.png");
-                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin);
-
-                    var head = Instance.transform.GetChild(5);
-                    var childObject = new GameObject("Hair");
-                    childObject.transform.SetParent(head);
-                    childObject.transform.localPosition = new Vector3(0, -0.0275f);
-                    childObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                    childObject.transform.localScale = new Vector3(1f, 1f);
-                    var childSprite = childObject.AddComponent<SpriteRenderer>();
-                    childSprite.sprite = ModAPI.LoadSprite("sprites/Garmadon/garmadonHair.png");
-                    childSprite.sortingLayerName = "Top";
-
-                    var person = Instance.GetComponent<PersonBehaviour>();
-                    foreach (var body in person.Limbs)
-                    {
-                        body.gameObject.AddComponent<CycleSkinTextures>();
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Garmadon/garmadon.png"), true, "Corrupted", ModAPI.LoadSprite("sprites/Garmadon/garmadonHair.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Garmadon/garmadonSensei.png"), true, "Sensei", ModAPI.LoadSprite("sprites/Garmadon/garmadonSenseiHair.png"));
-                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/Garmadon/youngGarmadon.png"), true, "Young Garmadon", ModAPI.LoadSprite("sprites/Garmadon/youngGarmadonHair.png"));
-                    }
-                }
-            });
-
-            ModAPI.Register(
-            new Modification()
-            {
-                OriginalItem = ModAPI.FindSpawnable("Android"),
-                NameOverride = "P.I.X.A.L." + ModTag,
-                DescriptionOverride = "Primary Interactive eX-ternal Assistant Life-form",
-                CategoryOverride = ModAPI.FindCategory("Ninjago"),
-                NameToOrderByOverride = "9",
-                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/pixalThumbnail.png"),
-                AfterSpawn = (Instance) =>
-                {
-                    var skin = ModAPI.LoadTexture("sprites/Characters/pixal.png");
-
-                    var head = Instance.transform.GetChild(0);
-                    var childObject = new GameObject("Hair");
-                    childObject.transform.SetParent(head);
-                    childObject.transform.localPosition = new Vector3(0, -0.0275f);
-                    childObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                    childObject.transform.localScale = new Vector3(1f, 1f);
-                    var childSprite = childObject.AddComponent<SpriteRenderer>();
-                    childSprite.sprite = ModAPI.LoadSprite("sprites/Characters/pixalHair.png");
-                    childSprite.sortingLayerName = "Top";
-
-                    var person = Instance.GetComponent<PersonBehaviour>();
-                    person.RandomisedSize = true;
-
-                    Instance.transform.localScale = Vector2.one * Random.Range(1.59f, 2f) / 2f / 0.82397f;
-
-                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin);
-                }
-            });
-
-            ModAPI.Register(
-            new Modification()
-            {
-                OriginalItem = ModAPI.FindSpawnable("Human"),
-                NameOverride = "The Overlord" + ModTag,
-                DescriptionOverride = "The Golden Master.",
-                CategoryOverride = ModAPI.FindCategory("Ninjago"),
-                NameToOrderByOverride = "ZZZZZZZZZZZZZZZZZY",
-                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/overlordThumbnail.png"),
-                AfterSpawn = (Instance) =>
-                {
-                    var skin = ModAPI.LoadTexture("sprites/Characters/overlord.png");
-                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin);
-
-                    var head = Instance.transform.GetChild(5);
-                    var childObject = new GameObject("Hair");
-                    childObject.transform.SetParent(head);
-                    childObject.transform.localPosition = new Vector3(0, -0.0275f);
-                    childObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                    childObject.transform.localScale = new Vector3(1f, 1f);
-                    var childSprite = childObject.AddComponent<SpriteRenderer>();
-                    childSprite.sprite = ModAPI.LoadSprite("sprites/Characters/overlordHair.png");
-                    childSprite.sortingLayerName = "Top";
-                    Instance.transform.localScale = Vector2.one * Random.Range(4.59f, 5f) / 2f / 0.82397f;
-                }
-            });
-
-            ModAPI.Register(
-            new Modification()
-            {
-                OriginalItem = ModAPI.FindSpawnable("Human"),
-                NameOverride = "Dareth" + ModTag,
-                DescriptionOverride = "The BROWN ninja!",
-                CategoryOverride = ModAPI.FindCategory("Ninjago"),
-                NameToOrderByOverride = "ZZZZZZZZZZZZZZZZZZ",
-                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/darethThumbnail.png"),
-                AfterSpawn = (Instance) =>
-                {
-                    var skin = ModAPI.LoadTexture("sprites/Characters/dareth.png");
-                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin);
-
-                    var head = Instance.transform.GetChild(5);
-                    var childObject = new GameObject("Hair");
-                    childObject.transform.SetParent(head);
-                    childObject.transform.localPosition = new Vector3(0, -0.0275f);
-                    childObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                    childObject.transform.localScale = new Vector3(1f, 1f);
-                    var childSprite = childObject.AddComponent<SpriteRenderer>();
-                    childSprite.sprite = ModAPI.LoadSprite("sprites/Characters/darethHair.png");
-                    childSprite.sortingLayerName = "Top";
                 }
             });
 
