@@ -16,6 +16,8 @@ namespace BensoMod
             CategoryBuilder.Create("BensoMod", "p", ModAPI.LoadSprite("sprites/bensomod.png"));
 
             #region People
+            Texture2D mcFlesh = ModAPI.LoadTexture("sprites/People/mcFlesh.png");
+            Texture2D mcBones = ModAPI.LoadTexture("sprites/People/mcBones.png");
 
             ModAPI.Register(
             new Modification()
@@ -24,7 +26,7 @@ namespace BensoMod
                 NameOverride = "The Flash" + ModTag,
                 DescriptionOverride = "The fastest man alive.",
                 CategoryOverride = ModAPI.FindCategory("BensoMod"),
-                NameToOrderByOverride = "0",
+                NameToOrderByOverride = "b0",
                 ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/flashThumbnail.png"),
                 AfterSpawn = (Instance) =>
                 {
@@ -58,7 +60,7 @@ namespace BensoMod
                 NameOverride = "Reverse Flash" + ModTag,
                 DescriptionOverride = "The ACTUAL fastest man alive.",
                 CategoryOverride = ModAPI.FindCategory("BensoMod"),
-                NameToOrderByOverride = "1",
+                NameToOrderByOverride = "b1",
                 ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/reverseFlashThumbnail.png"),
                 AfterSpawn = (Instance) =>
                 {
@@ -92,7 +94,7 @@ namespace BensoMod
                 NameOverride = "Bruce" + ModTag,
                 DescriptionOverride = "Batman but cooler.",
                 CategoryOverride = ModAPI.FindCategory("BensoMod"),
-                NameToOrderByOverride = "2",
+                NameToOrderByOverride = "b2",
                 ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/bruceThumbnail.png"),
                 AfterSpawn = (Instance) =>
                 {
@@ -118,7 +120,7 @@ namespace BensoMod
                 NameOverride = "Robert" + ModTag,
                 DescriptionOverride = "I hate this video game character.",
                 CategoryOverride = ModAPI.FindCategory("BensoMod"),
-                NameToOrderByOverride = "3",
+                NameToOrderByOverride = "b3",
                 ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/robertThumbnail.png"),
                 AfterSpawn = (Instance) =>
                 {
@@ -134,6 +136,189 @@ namespace BensoMod
                     var childSprite = childObject.AddComponent<SpriteRenderer>();
                     childSprite.sprite = ModAPI.LoadSprite("sprites/People/robertHair.png");
                     childSprite.sortingLayerName = "Top";
+                }
+            });
+
+            ModAPI.Register(
+            new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "TommyInnit" + ModTag,
+                DescriptionOverride = "Some people find me annoying first.",
+                CategoryOverride = ModAPI.FindCategory("BensoMod"),
+                NameToOrderByOverride = "b4",
+                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/tommyInnitThumbnail.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("sprites/People/tommyInnit.png");
+                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin, mcFlesh, mcBones);
+                }
+            });
+
+            ModAPI.Register(
+            new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "WilburSoot" + ModTag,
+                DescriptionOverride = "Don't say that I will cry.",
+                CategoryOverride = ModAPI.FindCategory("BensoMod"),
+                NameToOrderByOverride = "b5",
+                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/wilburSootThumbnail.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("sprites/People/wilburSoot.png");
+                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin, mcFlesh, mcBones);
+                }
+            });
+
+            ModAPI.Register(
+            new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "Ph1LzA" + ModTag,
+                DescriptionOverride = "Hardcore expert.",
+                CategoryOverride = ModAPI.FindCategory("BensoMod"),
+                NameToOrderByOverride = "b6",
+                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/ph1lzaThumbnail.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("sprites/People/ph1lza.png");
+                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin, mcFlesh, mcBones);
+
+                    var head = Instance.transform.GetChild(5);
+                    var childObject = new GameObject("Hair");
+                    childObject.transform.SetParent(head);
+                    childObject.transform.localPosition = new Vector3(0, -0.0275f);
+                    childObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                    childObject.transform.localScale = new Vector3(1f, 1f);
+                    var childSprite = childObject.AddComponent<SpriteRenderer>();
+                    childSprite.sprite = ModAPI.LoadSprite("sprites/People/ph1lzaHat.png");
+                    childSprite.sortingLayerName = "Top";
+                }
+            });
+
+            ModAPI.Register(
+            new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "TechnoBlade" + ModTag,
+                DescriptionOverride = "Blood for the blood god.",
+                CategoryOverride = ModAPI.FindCategory("BensoMod"),
+                NameToOrderByOverride = "b7",
+                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/technoThumbnail.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("sprites/People/techno.png");
+                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin, mcFlesh, mcBones);
+
+                    var head = Instance.transform.GetChild(5);
+                    var childObject = new GameObject("Hair");
+                    childObject.transform.SetParent(head);
+                    childObject.transform.localPosition = new Vector3(0, -0.0275f);
+                    childObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                    childObject.transform.localScale = new Vector3(1f, 1f);
+                    var childSprite = childObject.AddComponent<SpriteRenderer>();
+                    childSprite.sprite = ModAPI.LoadSprite("sprites/People/technoCrown.png");
+                    childSprite.sortingLayerName = "Top";
+                }
+            });
+
+            ModAPI.Register(
+            new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "jschlatt" + ModTag,
+                DescriptionOverride = "King Kong Balls.",
+                CategoryOverride = ModAPI.FindCategory("BensoMod"),
+                NameToOrderByOverride = "b8",
+                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/jschlattThumbnail.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("sprites/People/jschlatt.png");
+                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin, mcFlesh, mcBones);
+                }
+            });
+
+            ModAPI.Register(
+            new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "Quackity" + ModTag,
+                DescriptionOverride = "The plan is simple.",
+                CategoryOverride = ModAPI.FindCategory("BensoMod"),
+                NameToOrderByOverride = "b9",
+                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/quackityThumbnail.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("sprites/People/quackity.png");
+                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin, mcFlesh, mcBones);
+
+                    var person = Instance.GetComponent<PersonBehaviour>();
+                    foreach (var body in person.Limbs)
+                    {
+                        body.gameObject.AddComponent<CycleSkinTextures>();
+                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/People/quackity.png"), "Normal");
+                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/People/quackityNaked.png"), "Naked");
+                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/People/mexicanDream.png"), "Mexican Dream");
+                    }
+                }
+            });
+
+            ModAPI.Register(
+            new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "DanTDM" + ModTag,
+                DescriptionOverride = "Hello everybody! It's Dan here from The Diamond Minecart.",
+                CategoryOverride = ModAPI.FindCategory("BensoMod"),
+                NameToOrderByOverride = "b9-0",
+                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/dantdmThumbnail.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("sprites/People/dantdm.png");
+                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin, mcFlesh, mcBones);
+
+                    var head = Instance.transform.GetChild(5);
+                    var childObject = new GameObject("Hair");
+                    childObject.transform.SetParent(head);
+                    childObject.transform.localPosition = new Vector3(0, -0.0275f);
+                    childObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                    childObject.transform.localScale = new Vector3(1f, 1f);
+                    var childSprite = childObject.AddComponent<SpriteRenderer>();
+                    childSprite.sprite = ModAPI.LoadSprite("sprites/People/dantdmGoggles.png");
+                    childSprite.sortingLayerName = "Top";
+                }
+            });
+
+            ModAPI.Register(
+            new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "Slimecicle" + ModTag,
+                DescriptionOverride = "I'm bones.",
+                CategoryOverride = ModAPI.FindCategory("BensoMod"),
+                NameToOrderByOverride = "b9-1",
+                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/slimecicleThumbnail.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("sprites/People/slimecicle.png");
+                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin, mcFlesh, mcBones);
+                }
+            });
+
+            ModAPI.Register(
+            new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "Tubbo" + ModTag,
+                DescriptionOverride = "I like balls.",
+                CategoryOverride = ModAPI.FindCategory("BensoMod"),
+                NameToOrderByOverride = "b9-2",
+                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/tubboThumbnail.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("sprites/People/tubbo.png");
+                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin, mcFlesh, mcBones);
                 }
             });
 
