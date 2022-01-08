@@ -1,11 +1,11 @@
 {
-  "Name": "Ninjago Mod",
+  "Name": "BensoMod",
   "Author": "U1timateJ7",
-  "Description": "Adds ninjago characters and weapons onto the game.",
+  "Description": "hehe",
   "ModVersion": "1.0",
   "GameVersion": "1.21+",
   "ThumbnailPath": "sprites/thumbnail.png",
-  "EntryPoint": "Ninjago.Mod",
+  "EntryPoint": "BensoMod.Mod",
   "Tags": [],
   "Scripts": [
     "mod.cs",
