@@ -21,11 +21,45 @@ namespace BensoMod
             new Modification()
             {
                 OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "The Flash" + ModTag,
+                DescriptionOverride = "The fastest man alive.",
+                CategoryOverride = ModAPI.FindCategory("BensoMod"),
+                NameToOrderByOverride = "0",
+                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/flashThumbnail.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("sprites/People/flash.png");
+                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin);
+
+                    var head = Instance.transform.GetChild(5);
+                    var childObject = new GameObject("Hair");
+                    childObject.transform.SetParent(head);
+                    childObject.transform.localPosition = new Vector3(0, -0.0275f);
+                    childObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                    childObject.transform.localScale = new Vector3(1f, 1f);
+                    var childSprite = childObject.AddComponent<SpriteRenderer>();
+                    childSprite.sprite = ModAPI.LoadSprite("sprites/empty.png");
+                    childSprite.sortingLayerName = "Top";
+
+                    var person = Instance.GetComponent<PersonBehaviour>();
+                    foreach (var body in person.Limbs)
+                    {
+                        body.gameObject.AddComponent<CycleSkinTextures>();
+                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/People/flash.png"), true, "Mask On", ModAPI.LoadSprite("sprites/empty.png"));
+                        body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/People/flashMaskless.png"), true, "Mask Off", ModAPI.LoadSprite("sprites/People/flashHair.png"));
+                    }
+                }
+            });
+
+            ModAPI.Register(
+            new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
                 NameOverride = "Reverse Flash" + ModTag,
                 DescriptionOverride = "The ACTUAL fastest man alive.",
                 CategoryOverride = ModAPI.FindCategory("BensoMod"),
-                NameToOrderByOverride = "0",
-                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/reverseFlashThumbnail.png"), 
+                NameToOrderByOverride = "1",
+                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/reverseFlashThumbnail.png"),
                 AfterSpawn = (Instance) =>
                 {
                     var skin = ModAPI.LoadTexture("sprites/People/reverseFlash.png");
@@ -48,6 +82,58 @@ namespace BensoMod
                         body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/People/reverseFlash.png"), true, "Mask On", ModAPI.LoadSprite("sprites/empty.png"));
                         body.gameObject.GetComponent<CycleSkinTextures>().AddNewTexture(ModAPI.LoadTexture("sprites/People/reverseFlashMaskless.png"), true, "Mask Off", ModAPI.LoadSprite("sprites/People/reverseFlashHair.png"));
                     }
+                }
+            });
+
+            ModAPI.Register(
+            new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "Bruce" + ModTag,
+                DescriptionOverride = "Batman but cooler.",
+                CategoryOverride = ModAPI.FindCategory("BensoMod"),
+                NameToOrderByOverride = "2",
+                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/bruceThumbnail.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("sprites/People/bruce.png");
+                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin);
+
+                    var head = Instance.transform.GetChild(5);
+                    var childObject = new GameObject("Hair");
+                    childObject.transform.SetParent(head);
+                    childObject.transform.localPosition = new Vector3(0, -0.0275f);
+                    childObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                    childObject.transform.localScale = new Vector3(1f, 1f);
+                    var childSprite = childObject.AddComponent<SpriteRenderer>();
+                    childSprite.sprite = ModAPI.LoadSprite("sprites/People/bruceHelmet.png");
+                    childSprite.sortingLayerName = "Top";
+                }
+            });
+
+            ModAPI.Register(
+            new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "Robert" + ModTag,
+                DescriptionOverride = "I hate this video game character.",
+                CategoryOverride = ModAPI.FindCategory("BensoMod"),
+                NameToOrderByOverride = "3",
+                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/robertThumbnail.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("sprites/People/robert.png");
+                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin);
+
+                    var head = Instance.transform.GetChild(5);
+                    var childObject = new GameObject("Hair");
+                    childObject.transform.SetParent(head);
+                    childObject.transform.localPosition = new Vector3(0, -0.0275f);
+                    childObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                    childObject.transform.localScale = new Vector3(1f, 1f);
+                    var childSprite = childObject.AddComponent<SpriteRenderer>();
+                    childSprite.sprite = ModAPI.LoadSprite("sprites/People/robertHair.png");
+                    childSprite.sortingLayerName = "Top";
                 }
             });
 
