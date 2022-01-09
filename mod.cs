@@ -322,6 +322,74 @@ namespace BensoMod
                 }
             });
 
+            ModAPI.Register(
+            new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "Ladybug" + ModTag,
+                DescriptionOverride = "Lucky Charm!",
+                CategoryOverride = ModAPI.FindCategory("BensoMod"),
+                NameToOrderByOverride = "b9-3",
+                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/ladybugThumbnail.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("sprites/People/ladybug.png");
+                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin);
+
+                    var head = Instance.transform.GetChild(5);
+                    var childObject = new GameObject("Hair");
+                    childObject.transform.SetParent(head);
+                    childObject.transform.localPosition = new Vector3(0, -0.0275f);
+                    childObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                    childObject.transform.localScale = new Vector3(1f, 1f);
+                    var childSprite = childObject.AddComponent<SpriteRenderer>();
+                    childSprite.sprite = ModAPI.LoadSprite("sprites/People/ladybugHair.png");
+                    childSprite.sortingLayerName = "Top";
+                }
+            });
+
+            ModAPI.Register(
+            new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "Cat Noir" + ModTag,
+                DescriptionOverride = "Cataclysm!",
+                CategoryOverride = ModAPI.FindCategory("BensoMod"),
+                NameToOrderByOverride = "b9-4",
+                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/catNoirThumbnail.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("sprites/People/catNoir.png");
+                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin);
+
+                    var head = Instance.transform.GetChild(5);
+                    var childObject = new GameObject("Hair");
+                    childObject.transform.SetParent(head);
+                    childObject.transform.localPosition = new Vector3(0, -0.0275f);
+                    childObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                    childObject.transform.localScale = new Vector3(1f, 1f);
+                    var childSprite = childObject.AddComponent<SpriteRenderer>();
+                    childSprite.sprite = ModAPI.LoadSprite("sprites/People/catNoirHair.png");
+                    childSprite.sortingLayerName = "Top";
+                }
+            });
+
+            ModAPI.Register(
+            new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "Hawkmoth" + ModTag,
+                DescriptionOverride = "Bad parent.",
+                CategoryOverride = ModAPI.FindCategory("BensoMod"),
+                NameToOrderByOverride = "b9-5",
+                ThumbnailOverride = ModAPI.LoadSprite("sprites/Thumbnails/hawkmothThumbnail.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("sprites/People/hawkmoth.png");
+                    Instance.GetComponent<PersonBehaviour>().SetBodyTextures(skin);
+                }
+            });
+
             #endregion
         }
     }
